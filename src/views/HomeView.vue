@@ -1,3 +1,10 @@
+<script setup>
+import HeroSection from "@/components/home/HeroSection.vue";
+</script>
 <template>
-  <h1 class="text-red-600">ggggg</h1>
+  <div>
+    <HeroSection />
+  </div>
 </template>
+
+<style></style>
