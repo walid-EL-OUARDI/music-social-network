@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute top-1/2 -translate-y-1/2 w-full z-50">
+  <div class="absolute top-1/2 -translate-y-1/2 w-full z-10">
     <div class="text-center mb-3 px-4">
       <h1 class="text-4xl text-gray-100 mb-3">
         <b>Music Social Network</b>

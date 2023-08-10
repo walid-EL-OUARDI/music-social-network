@@ -1,5 +1,6 @@
 <template>
-  <div class="flex justify-center items-center min-h-screen w-full">
+  <TopNavigation />
+  <div class="flex justify-center mt-20 items-center min-h-screen w-full">
     <div class="w-[90%] sm:w-[60%] md:w-[50%] lg:w-[35%] my-4">
       <div class="bg-gray-900 rounded-md p-8 mb-2">
         <form action="" method="post">
@@ -71,6 +72,7 @@
 
 <script setup>
 import TextInput from "../components/global/TextInput.vue";
+import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import { ref } from "vue";
 let firstName = ref(null);
 let lastName = ref(null);

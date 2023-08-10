@@ -1,4 +1,5 @@
 <template>
+  <TopNavigation />
   <div class="flex justify-center items-center w-full min-h-screen">
     <div class="w-[90%] sm:w-[60%] md:w-[50%] lg:w-[35%] my-4">
       <div class="bg-gray-900 rounded-md p-8 mb-2">
@@ -46,6 +47,7 @@
 </template>
 <script setup>
 import TextInput from "../components/global/TextInput.vue";
+import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import { ref } from "vue";
 let email = ref(null);
 let password = ref(null);

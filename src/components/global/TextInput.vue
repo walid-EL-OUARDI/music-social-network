@@ -36,11 +36,11 @@ const props = defineProps({
   },
 });
 
+const { label, input, error, lablColor, placeHolder, inputType } =
+  toRefs(props);
+
 const inputComputed = computed({
   get: () => input.value,
   set: (val) => emit("update:input", val),
 });
-
-const { label, input, error, lablColor, placeHolder, inputType } =
-  toRefs(props);
 </script>
