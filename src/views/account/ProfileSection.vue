@@ -15,8 +15,8 @@
             <h1 class="text-2xl md:text-4xl test-left text-gray-900">Walid</h1>
             <span class="text-md text-gray-700"> Morocco, Agadir </span>
           </div>
-          <div class="w-1/2 mt-2 flex justify-end">
-            <RouterLinkBtn btnText="Edit Profile" url="" color="green" />
+          <div class="w-1/2 flex justify-end items-center">
+            <RouterLinkBtn btnText="Edit Profile" url="/profile/edit-profile" color="green" />
           </div>
         </div>
         <ProfileInfoSection />

@@ -10,7 +10,7 @@
             class="ml-2"
             btnText="Create Post"
             color="green"
-            url=""
+            url="/profile/create-post"
           />
         </div>
         <div class="flex flex-wrap mb-4">
@@ -41,7 +41,7 @@
                 </p>
                 <div class="mt-2 flex items-center justify-end">
                   <RouterLink
-                    to=""
+                    to="/profile/edit-post"
                     class="mr-1 bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-1 px-3 rounded-full"
                   >
                     Edit post

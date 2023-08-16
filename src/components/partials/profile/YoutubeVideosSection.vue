@@ -7,19 +7,25 @@
 
         <div class="flex justify-end w-full mt-4">
           <RouterLinkBtn
-            class="ml-2 hover:bg-red-500"
-            btnText="Delete Video"
-            color=""
-            url=""
+            class="mr-2"
+            btnText="Add Youtube Video"
+            color="green"
+            url="/profile/add-youtube-video"
           />
-          <RouterLinkBtn btnText="Add Video" color="green" url="" />
+          <RouterLinkBtn
+            class="hover:bg-red-500"
+            btnText="Delete Youtube Video"
+            color=""
+            url="/profile/delete-youtube-video"
+          />
         </div>
         <div class="flex flex-wrap mb-4">
-          <div
-            class="my-1 px-1 w-full md:w-1/2"
-          >
+          <div class="my-1 px-1 w-full md:w-1/2">
             <div class="text-xl text-gray-900">Video Title</div>
-            <iframe class="w-full h-60" src="https://www.youtube.com/embed/5KOw4WVV2Og"></iframe>
+            <iframe
+              class="w-full h-60"
+              src="https://www.youtube.com/embed/5KOw4WVV2Og"
+            ></iframe>
           </div>
         </div>
       </div>

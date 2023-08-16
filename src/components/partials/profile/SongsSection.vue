@@ -6,13 +6,13 @@
         <div class="bg-green-500 w-full h-1"></div>
 
         <div class="flex justify-end w-full mt-4">
+          <RouterLinkBtn class="mr-2" btnText="Add Song" color="green" url="/profile/add-song" />
           <RouterLinkBtn
-            class="ml-2 hover:bg-red-500"
+            class="hover:bg-red-500"
             btnText="Delete Song"
             color=""
-            url=""
+            url="/profile/delete-song"
           />
-          <RouterLinkBtn btnText="Add Song" color="green" url="" />
         </div>
       </div>
       <div class="mt-4 bg-green-500">

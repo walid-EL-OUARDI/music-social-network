@@ -41,7 +41,7 @@
           class="w-full text-white text-center text-lg mt-3"
           btnText="Posts"
           color="green"
-          url=""
+          url="/profile/posts"
         />
 
         <RouterLinkBtn
