@@ -1,7 +1,7 @@
 <template>
   <TopNavigation />
   <div class="container max-w-4xl mx-auto mt-20">
-    <div class="text-gray-900 font-bold text-xl">Edit Profile</div>
+    <div class="text-gray-900 font-bold text-xl">Add song</div>
     <div class="bg-green-500 w-full h-1"></div>
     <TextInput
       label="Song Title"
