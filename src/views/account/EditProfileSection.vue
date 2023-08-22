@@ -18,7 +18,7 @@
             placeHolder="Walid"
             v-model:input="firstName"
             inputType="text"
-            error="error message"
+            :error="errors.first_name ? errors.first_name[0] : ''"
           />
         </div>
         <div class="w-full md:w-1/2 px-3">
@@ -27,7 +27,7 @@
             placeHolder="EL ouardi"
             v-model:input="lastName"
             inputType="text"
-            error="error message"
+            :error="errors.last_name ? errors.last_name[0] : ''"
           />
         </div>
       </div>
@@ -39,29 +39,37 @@
             placeHolder="Morocco, Agadir"
             v-model:input="location"
             inputType="text"
-            error="error message"
+            :error="errors.location ? errors.location[0] : ''"
           />
         </div>
       </div>
 
-      <div class="px-3">
-        <img :src="image" v-if="image" />
-        <DisplayCropperBtn
-          label="Profile Image"
-          btnText="Update Profile Image"
-          @showModal="showModal = true"
-        />
+      <div class="flex flex-wrap mt-4 mb-6">
+        <div class="w-full md:w-1/2 px-3">
+          <CroppedImage
+            v-if="croppedImage"
+            label="Cropped Image"
+            :image="croppedImage"
+          />
+          <CroppedImage v-else label="Cropped Image" :image="image" />
+        </div>
       </div>
+      <DisplayCropperBtn
+        label="Profile Image"
+        btnText="Update Profile Image"
+        @showModal="showModal = true"
+      />
+
       <div class="px-3">
         <TextAreaInput
           label="Description"
           placeHolder="Description"
           v-model:description="description"
-          error="error message"
+          :error="errors.description ? errors.description[0] : ''"
         />
       </div>
       <div class="px-3 flex justify-end">
-        <SubmitFormBtn btnText="Update Profile" />
+        <SubmitFormBtn btnText="Update Profile" @submitForm="updateUser" />
       </div>
     </div>
   </div>
@@ -69,24 +77,61 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import axios from "axios";
+import { onMounted, ref } from "vue";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import FooterSection from "@/components/layouts/FooterSection.vue";
 import TextInput from "@/components/global/TextInput.vue";
 import DisplayCropperBtn from "@/components/global/DisplayCropperBtn.vue";
 import CropperModal from "@/components/global/CropperModal.vue";
+import CroppedImage from "@/components/global/CroppedImage.vue";
 import SubmitFormBtn from "@/components/global/SubmitFormBtn.vue";
 import TextAreaInput from "@/components/global/TextAreaInput.vue";
+import { useUserStore } from "@/stores/useUserStore";
+const userStore = useUserStore();
 let showModal = ref(false);
 let firstName = ref(null);
 let lastName = ref(null);
 let location = ref(null);
 let description = ref(null);
-// let imageData = null;
+let croppedImage = ref(null);
+let imageData = null;
 let image = ref(null);
 let errors = ref([]);
 
 const setCroppedImageData = (data) => {
-  image.value = data.imageUrl;
+  imageData = data;
+  croppedImage.value = data.imageUrl;
+};
+
+onMounted(() => {
+  firstName.value = userStore.firstName || null;
+  lastName.value = userStore.lastName || null;
+  location.value = userStore.location || null;
+  description.value = userStore.description || null;
+  image.value = userStore.image || null;
+});
+
+const updateUser = async () => {
+  let data = new FormData();
+  data.append("first_name", firstName.value || "");
+  data.append("last_name", lastName.value || "");
+  data.append("location", location.value || "");
+  data.append("description", description.value || "");
+  if (imageData) {
+    data.append("image", imageData.file || "");
+    data.append("height", imageData.height || "");
+    data.append("width", imageData.width || "");
+    data.append("left", imageData.left || "");
+    data.append("top", imageData.top || "");
+  }
+  errors.value = [];
+  try {
+    await axios.post("user/" + userStore.id + "?_method=PUT", data);
+    userStore.fetchUser();
+  } catch (err) {
+    console.log("mochkila", err);
+    errors.value = err.response.data.errors;
+  }
 };
 </script>

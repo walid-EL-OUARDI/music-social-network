@@ -35,6 +35,6 @@ const { label, description, error, placeHolder } = toRefs(props);
 
 const descriptionComputed = computed({
   get: () => description.value,
-  set: (val) => emit("update:descriptionComputed", val),
+  set: (val) => emit("update:description", val),
 });
 </script>

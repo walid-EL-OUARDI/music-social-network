@@ -9,7 +9,7 @@
 
 <script setup>
 import { toRefs } from "vue";
-defineEmits(["submtForm"]);
+defineEmits(["submitForm"]);
 
 const props = defineProps({ btnText: String });
 const { btnText } = toRefs(props);

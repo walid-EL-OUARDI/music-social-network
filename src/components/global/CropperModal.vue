@@ -66,10 +66,10 @@ const fileInput = ref(null);
 let croppedImageData = {
   file: null,
   imageUrl: null,
-  height: null,
-  width: null,
-  left: null,
-  top: null,
+  // height: null,
+  // width: null,
+  // left: null,
+  // top: null,
 };
 
 const getUploadedImage = (e) => {
@@ -79,7 +79,7 @@ const getUploadedImage = (e) => {
 };
 const crop = () => {
   const { coordinates, canvas } = cropper.value.getResult();
-
+  // console.log(fileInput.value.files);
   croppedImageData.file = fileInput.value.files[0];
   croppedImageData.imageUrl = canvas.toDataURL();
   croppedImageData.height = coordinates.height;

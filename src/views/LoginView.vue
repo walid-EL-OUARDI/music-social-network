@@ -60,15 +60,12 @@ let errors = ref([]);
 const login = async () => {
   errors.value = [];
   try {
-    let res = await axios
-      .post("http://127.0.0.1:8000/api/login", {
-        email: email.value,
-        password: password.value,
-      })
-      .then((res) => {
-        console.log(res);
-        userStore.setUserDetails(res);
-      });
+    let res = await axios.post("login", {
+      email: email.value,
+      password: password.value,
+    });
+    console.log(res);
+    userStore.setUserDetails(res);
   } catch (err) {
     errors.value = err.response.data.errors;
   }
