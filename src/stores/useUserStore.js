@@ -24,15 +24,18 @@ export const useUserStore = defineStore("user", {
       this.$state.description = res.data.user.description;
       if (res.data.user.image) {
         this.$state.image =
-          "http://127.0.0.1:8000/profileImages/" + res.data.user.image;
+          import.meta.env.VITE_VUE_APP_BACKEND_URL +
+          'profileImages/' +
+          res.data.user.image;
       } else {
-        this.$state.image = "http://localhost:5173/images/ProfileAvatar.png";
+        this.$state.image =
+          import.meta.env.VITE_VUE_APP_URL + "images/ProfileAvatar.png";
       }
     },
 
     async fetchUser() {
       let res = await axios.get(
-        "http://127.0.0.1:8000/api/user/" + this.$state.id
+        import.meta.env.VITE_VUE_APP_API_URL + "user/" + this.$state.id
       );
       console.log(res.data);
       this.$state.id = res.data.user.id;
@@ -43,9 +46,12 @@ export const useUserStore = defineStore("user", {
       this.$state.description = res.data.user.description;
       if (res.data.user.image) {
         this.$state.image =
-          "http://127.0.0.1:8000/profileImages/" + res.data.user.image;
+          import.meta.env.VITE_VUE_APP_BACKEND_URL +
+          "profileImages/" +
+          res.data.user.image;
       } else {
-        this.$state.image = "http://localhost:5173/images/ProfileAvatar.png";
+        this.$state.image =
+          import.meta.env.VITE_VUE_APP_URL + "images/ProfileAvatar.png";
       }
     },
   },

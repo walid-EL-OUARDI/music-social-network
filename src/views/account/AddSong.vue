@@ -8,7 +8,7 @@
       placeHolder="Your Song Title"
       v-model:input="songTitle"
       inputType="text"
-      error="error message"
+      :error="errors.title ? errors.title[0] : ''"
     />
     <div class="mt-4">
       <label
@@ -18,11 +18,16 @@
       </label>
 
       <div class="mb-3 w-full">
-        <input class="w-full border border-gray-300" type="file" />
+        <input
+          class="w-full border border-gray-300"
+          type="file"
+          ref="file"
+          @change="getUplodedFile"
+        />
       </div>
     </div>
     <div class="px-3 flex justify-end mb-4">
-      <SubmitFormBtn btnText="Add Song" />
+      <SubmitFormBtn btnText="Add Song" @click="storeSong" />
     </div>
   </div>
   <FooterSection />
@@ -30,9 +35,42 @@
 
 <script setup>
 import { ref } from "vue";
+import axios from "axios";
+// import Sawl from "@/sweetalert2.js";
 import TextInput from "@/components/global/TextInput.vue";
 import SubmitFormBtn from "@/components/global/SubmitFormBtn.vue";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import FooterSection from "@/components/layouts/FooterSection.vue";
-const songTitle = ref(null);
+import { useUserStore } from "@/stores/useUserStore.js";
+const userStore = useUserStore();
+let songTitle = ref(null);
+let file = ref(null);
+let song = ref(null);
+let errors = ref([]);
+const getUplodedFile = () => {
+  song.value = file.value.files[0];
+  console.log(song.value);
+};
+
+const storeSong = async () => {
+  errors.value = [];
+  // if (!song.value) {
+  //   Sawl.fire(
+  //     "Opps, something went wrong!",
+  //     "You forgot to upload the mp3 file!",
+  //     "warning"
+  //   );
+  // }
+  let songData = new FormData();
+  songData.append("user_id", userStore.id);
+  songData.append("title", songTitle.value || "");
+  songData.append("song", song.value);
+  try {
+    let res = await axios.post("song", songData);
+    console.log(res);
+  } catch (err) {
+    errors.value = err.response.data.errors;
+    console.log(errors.value.title[0]);
+  }
+};
 </script>
