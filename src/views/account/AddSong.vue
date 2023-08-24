@@ -36,7 +36,7 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
-// import Sawl from "@/sweetalert2.js";
+import Sawl from "@/sweetalert2.js";
 import TextInput from "@/components/global/TextInput.vue";
 import SubmitFormBtn from "@/components/global/SubmitFormBtn.vue";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
@@ -54,13 +54,13 @@ const getUplodedFile = () => {
 
 const storeSong = async () => {
   errors.value = [];
-  // if (!song.value) {
-  //   Sawl.fire(
-  //     "Opps, something went wrong!",
-  //     "You forgot to upload the mp3 file!",
-  //     "warning"
-  //   );
-  // }
+  if (!song.value) {
+    Sawl.fire(
+      "Opps, something went wrong!",
+      "You forgot to upload the mp3 file!",
+      "warning"
+    );
+  }
   let songData = new FormData();
   songData.append("user_id", userStore.id);
   songData.append("title", songTitle.value || "");
