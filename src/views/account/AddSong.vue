@@ -42,7 +42,9 @@ import SubmitFormBtn from "@/components/global/SubmitFormBtn.vue";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import FooterSection from "@/components/layouts/FooterSection.vue";
 import { useUserStore } from "@/stores/useUserStore.js";
+import { useSongStore } from "@/stores/useSongStore.js";
 const userStore = useUserStore();
+const songStore = useSongStore();
 let songTitle = ref(null);
 let file = ref(null);
 let song = ref(null);
@@ -68,9 +70,10 @@ const storeSong = async () => {
   try {
     let res = await axios.post("song", songData);
     console.log(res);
+    songStore.fetchSong(userStore.id);
   } catch (err) {
     errors.value = err.response.data.errors;
-    console.log(errors.value.title[0]);
+    // console.log(errors.value.title[0]);
   }
 };
 </script>
