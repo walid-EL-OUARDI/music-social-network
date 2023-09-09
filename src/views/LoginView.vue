@@ -49,10 +49,18 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import TextInput from "../components/global/TextInput.vue";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import { useUserStore } from "../stores/useUserStore";
+import { useSongStore } from "../stores/useSongStore";
+import { useVideoStore } from "../stores/useVideoStore";
+import { usePostStore } from "../stores/usePostStore";
+const router = useRouter();
 const userStore = useUserStore();
+const songStore = useSongStore();
+const postStore = usePostStore();
+const videoStore = useVideoStore();
 let email = ref(null);
 let password = ref(null);
 let errors = ref([]);
@@ -64,10 +72,17 @@ const login = async () => {
       email: email.value,
       password: password.value,
     });
-    console.log(res);
+    // console.log(res);
+    axios.defaults.headers.common["Authorization"] = "Bearer " + res.data.token;
     userStore.setUserDetails(res);
+    // await profileStore.fetchProfileById(userStore.id);
+    await songStore.fetchSong(userStore.id);
+    await postStore.fetchPosts(userStore.id);
+    await videoStore.fetchvideo(userStore.id);
+    router.push("/profile");
   } catch (err) {
     errors.value = err.response.data.errors;
+    // console.log(err);
   }
 };
 </script>

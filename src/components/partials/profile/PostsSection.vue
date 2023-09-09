@@ -21,12 +21,12 @@
           >
             <div class="rounded-lg border">
               <a href="#">
-                <img class="rounded-t-lg w-full" :src="post.image" alt="" />
+                <img class="rounded-t-lg w-full h-[18rem]" :src="post.image" alt="" />
               </a>
               <div class="p-2 md:p-4">
                 <div class="text-lg">
                   <RouterLink
-                    to=""
+                    :to="'/profile/post/' + post.id"
                     class="underline text-blue-500 hover:text-blue-600"
                   >
                     {{ post.title }}

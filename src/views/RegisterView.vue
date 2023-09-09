@@ -76,10 +76,18 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import TextInput from "../components/global/TextInput.vue";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import { useUserStore } from "../stores/useUserStore";
+import { useSongStore } from "../stores/useSongStore";
+import { useVideoStore } from "../stores/useVideoStore";
+import { usePostStore } from "../stores/usePostStore";
+const router = useRouter();
 const userStore = useUserStore();
+const songStore = useSongStore();
+const postStore = usePostStore();
+const videoStore = useVideoStore();
 let firstName = ref(null);
 let lastName = ref(null);
 let email = ref(null);
@@ -98,9 +106,16 @@ const register = async () => {
         password: password.value,
         password_confirmation: comfirmedPassword.value,
       })
-      .then((res) => {
+      .then(async (res) => {
         console.log("Res", res);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + res.data.token;
         userStore.setUserDetails(res);
+        // await profileStore.fetchProfileById(userStore.id);
+        await songStore.fetchSong(userStore.id);
+        await postStore.fetchPosts(userStore.id);
+        await videoStore.fetchvideo(userStore.id);
+        router.push("/profile");
       });
   } catch (err) {
     console.log("mochkila", err);

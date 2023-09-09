@@ -48,7 +48,7 @@
       </div>
 
       <div class="px-3 flex justify-end">
-        <SubmitFormBtn btnText="Update Profile" @click="createPost" />
+        <SubmitFormBtn btnText="Create Post" @click="createPost" />
       </div>
     </div>
   </div>
