@@ -26,12 +26,19 @@
             />
           </div>
           <button
+            v-if="!processing"
             class="block w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide"
             type="submit"
             @click="login"
           >
             Login
           </button>
+          <div
+            v-if="processing"
+            class="flex justify-center w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide"
+          >
+            <ProcessingIcone />
+          </div>
         </form>
       </div>
       <p class="text-center text-xl text-gray-900">
@@ -50,8 +57,10 @@
 import axios from "axios";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import Swal from "@/sweetalert2.js";
 import TextInput from "../components/global/TextInput.vue";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
+import ProcessingIcone from "@/components/global/ProcessingIcone.vue";
 import { useUserStore } from "../stores/useUserStore";
 import { useSongStore } from "../stores/useSongStore";
 import { useVideoStore } from "../stores/useVideoStore";
@@ -63,9 +72,12 @@ const postStore = usePostStore();
 const videoStore = useVideoStore();
 let email = ref(null);
 let password = ref(null);
+let processing = ref(false);
 let errors = ref([]);
+let incorectLoginData = ref(null);
 
 const login = async () => {
+  processing.value = true;
   errors.value = [];
   try {
     let res = await axios.post("login", {
@@ -79,10 +91,21 @@ const login = async () => {
     await songStore.fetchSong(userStore.id);
     await postStore.fetchPosts(userStore.id);
     await videoStore.fetchvideo(userStore.id);
+    processing.value = false;
     router.push("/profile");
   } catch (err) {
-    errors.value = err.response.data.errors;
-    // console.log(err);
+    processing.value = false;
+    console.log(err);
+    if (err.response.data.errors) {
+      errors.value = err.response.data.errors;
+    }
+    if (err.response.data.error) {
+      Swal.fire({
+        title: "Email or  Password is wrong?",
+        text: "Please enter the correct data!",
+        icon: "warning",
+      });
+    }
   }
 };
 </script>

@@ -51,12 +51,19 @@
               v-model:input="comfirmedPassword"
             />
             <button
+              v-if="!processing"
               class="block w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide mt-3"
               type="submit"
               @click="register"
             >
               Register
             </button>
+            <div
+              v-if="processing"
+              class="mt-3 flex justify-center w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide"
+            >
+              <ProcessingIcone />
+            </div>
           </div>
         </form>
       </div>
@@ -79,6 +86,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import TextInput from "../components/global/TextInput.vue";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
+import ProcessingIcone from "@/components/global/ProcessingIcone.vue";
 import { useUserStore } from "../stores/useUserStore";
 import { useSongStore } from "../stores/useSongStore";
 import { useVideoStore } from "../stores/useVideoStore";
@@ -93,9 +101,11 @@ let lastName = ref(null);
 let email = ref(null);
 let password = ref(null);
 let comfirmedPassword = ref(null);
+let processing = ref(null);
 let errors = ref([]);
 
 const register = async () => {
+  processing.value = true;
   errors.value = [];
   try {
     let res = await axios
@@ -115,11 +125,13 @@ const register = async () => {
         await songStore.fetchSong(userStore.id);
         await postStore.fetchPosts(userStore.id);
         await videoStore.fetchvideo(userStore.id);
+        processing.value = false;
         router.push("/profile");
       });
   } catch (err) {
     console.log("mochkila", err);
     errors.value = err.response.data.errors;
+    processing.value = false;
   }
 };
 </script>

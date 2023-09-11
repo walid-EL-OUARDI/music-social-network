@@ -1,16 +1,11 @@
 <template>
-    <div class="
-        w-full
-        sm:w-1/2
-        font-bold
-        text-gray-100
-        mt-4
-        rounded
-        text-center
-        bg-green-500
-        p-2
-        py-1
-    ">
-        Number of songs 6
-    </div>
+  <div
+    class="w-full sm:w-1/2 font-bold text-gray-100 mt-4 rounded text-center bg-green-500 p-2 py-1"
+  >
+    Number of songs {{ songStore.songs.length }}
+  </div>
 </template>
+<script setup>
+import { useSongStore } from "@/stores/useSongStore.js";
+const songStore = useSongStore();
+</script>
