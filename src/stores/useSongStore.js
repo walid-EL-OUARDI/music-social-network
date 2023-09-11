@@ -17,6 +17,11 @@ export const useSongStore = defineStore("song", {
         this.$state.songs = res.data.songs;
       }
     },
+    clearSongs() {
+      this.$state.artistId = null;
+      this.$state.artistName = null;
+      this.$state.songs = [];
+    },
   },
   persist: true,
 });

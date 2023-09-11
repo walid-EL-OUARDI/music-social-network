@@ -25,7 +25,7 @@ export const useUserStore = defineStore("user", {
       if (res.data.user.image) {
         this.$state.image =
           import.meta.env.VITE_VUE_APP_BACKEND_URL +
-          'profileImages/' +
+          "profileImages/" +
           res.data.user.image;
       } else {
         this.$state.image =
@@ -53,6 +53,17 @@ export const useUserStore = defineStore("user", {
         this.$state.image =
           import.meta.env.VITE_VUE_APP_URL + "images/ProfileAvatar.png";
       }
+    },
+
+    clearUser() {
+      this.$state.id = null;
+      this.$state.token = null;
+      this.$state.firstName = null;
+      this.$state.lastName = null;
+      this.$state.email = null;
+      this.$state.location = null;
+      this.$state.image = null;
+      this.$state.description = null;
     },
   },
   persist: true,

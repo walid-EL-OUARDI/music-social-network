@@ -12,6 +12,9 @@ export const useVideoStore = defineStore("video", {
       console.log(res.data);
       this.$state.videos = res.data.videos;
     },
+    clearVideos() {
+      this.$state.videos = null;
+    },
   },
   persist: true,
 });
