@@ -1,6 +1,6 @@
 <template>
   <TopNavigation />
-  <div class="container max-w-4xl mx-auto mt-20">
+  <div class="container max-w-4xl mx-auto mt-28   px-2 flex-grow ">
     <div class="text-gray-900 font-bold text-xl">Add Youtube Video</div>
     <div class="bg-green-500 w-full h-1"></div>
     <TextInput
@@ -17,8 +17,8 @@
       inputType="text"
       :error="errors.video_url ? errors.video_url[0] : ''"
     />
-    <div class="px-3 flex justify-end mb-4">
-      <SubmitFormBtn btnText="Add Song" @click="addYoutubeVideoLink" />
+    <div class="px-3 flex justify-end mt-5 mb-10 ">
+      <SubmitFormBtn btnText="Add Video" @click="addYoutubeVideoLink" />
     </div>
   </div>
   <FooterSection />

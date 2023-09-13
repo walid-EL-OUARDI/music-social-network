@@ -1,6 +1,6 @@
 <template>
   <TopNavigation />
-  <div class="container max-w-4xl mx-auto mt-20 mb-[166px]">
+  <div class="px-2 container max-w-4xl mx-auto mt-28 flex-grow mb-4">
     <div class="text-gray-900 font-bold text-xl">Delete Youtube Video</div>
     <div class="bg-green-500 w-full h-1"></div>
     <div class="flex items-center justify-between" v-for="(video, index) in videos" :key="index">

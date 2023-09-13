@@ -1,13 +1,13 @@
 <template>
   <TopNavigation />
-  <div class="mt-20 mb-20">
-    <div class="container max-w-4xl mx-auto mt-10">
+  <div class="mt-28  mb-10 flex-grow">
+    <div class="container max-w-4xl mx-auto px-2">
       <div class="text-gray-900 font-bold text-xl">Create Post</div>
       <div class="bg-green-500 w-full h-1"></div>
     </div>
-    <div class="max-w-4xl mx-auto mt-10">
+    <div class="max-w-4xl mx-auto">
       <div class="flex flex-wrap mt-4 mb-6">
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/2 px-2">
           <TextInput
             label="Post Title"
             placeHolder="your post title"
@@ -16,7 +16,7 @@
             :error="errors.title ? errors.title[0] : ''"
           />
         </div>
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/2 px-2">
           <TextInput
             label="Post Location"
             placeHolder="your post location"
@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <div class="px-3 mb-6">
+      <div class="px-2 mb-6">
         <label class="block mb-2 tracking-wide uppercase text-xs font-bold"
           >Post Image</label
         >
@@ -38,7 +38,7 @@
           @change="getFile"
         />
       </div>
-      <div class="mt-10 ml-3 mb-6">
+      <div class="mt-10 px-2 mb-6">
         <TextAreaInput
           label="Post Description"
           placeHolder="your post description"
@@ -47,7 +47,7 @@
         />
       </div>
 
-      <div class="px-3 flex justify-end">
+      <div class="px-2 flex justify-end">
         <SubmitFormBtn btnText="Create Post" @click="createPost" />
       </div>
     </div>

@@ -1,10 +1,10 @@
 <template>
   <TopNavigation />
-  <div class="mt-20">
-    <div class="container max-w-4xl mx-auto flex mt-10">
-      <div class="w-1/3">
+  <div class="mt-20 px-3">
+    <div class="container max-w-4xl mx-auto flex">
+      <div class="md:w-1/3 w-1/2">
         <img
-          class="w-full rounded-lg h-auto shadow-lg"
+          class="rounded-lg h-auto shadow-lg"
           :src="image"
           alt="Profile Pic"
         />
@@ -17,7 +17,7 @@
             </h1>
             <span class="text-md text-gray-700"> {{location}} </span>
           </div>
-          <div class="w-1/2 flex justify-end items-center">
+          <div class="w-1/2 flex justify-end items-center text-center">
             <RouterLinkBtn
               btnText="Edit Profile"
               url="/profile/edit-profile"

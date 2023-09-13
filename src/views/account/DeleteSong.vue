@@ -1,9 +1,11 @@
 <template>
   <TopNavigation />
-  <div class="container max-w-4xl mx-auto mt-20 mb-[166px]">
-    <div class="text-gray-900 font-bold text-xl">Delete Song</div>
-    <div class="bg-green-500 w-full h-1"></div>
-    <div class="">
+  <div class="container max-w-4xl mx-auto mt-28  flex-grow">
+    <div class="px-2">
+      <div class="text-gray-900 font-bold text-xl">Delete Song</div>
+      <div class="bg-green-500 w-full h-1"></div>
+    </div>
+    <div class="px-2">
       <div class="w-3/4 mr-auto mt-2 text-lg p-1 text-gray-900">
         <div
           v-for="(song, index) in userSongs"

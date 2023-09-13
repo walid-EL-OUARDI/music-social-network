@@ -2,8 +2,7 @@
   <TopNavigation />
   <div class="flex justify-center mt-20 items-center min-h-screen w-full">
     <div class="w-[90%] sm:w-[60%] md:w-[50%] lg:w-[35%] my-4">
-      <div class="bg-gray-900 rounded-md p-8 mb-2">
-        <form @submit.prevent>
+      <div class="bg-gray-900 rounded-md px-8 pt-8 pb-4 mb-2">
           <h1 class="text-gray-100 font-semibold text-2xl">
             Let's get rocking
           </h1>
@@ -52,7 +51,7 @@
             />
             <button
               v-if="!processing"
-              class="block w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide mt-3"
+              class="block w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide mt-4"
               type="submit"
               @click="register"
             >
@@ -60,12 +59,11 @@
             </button>
             <div
               v-if="processing"
-              class="mt-3 flex justify-center w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide"
+              class="mt-4 flex justify-center w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide"
             >
               <ProcessingIcone />
             </div>
           </div>
-        </form>
       </div>
       <p class="text-center text-xl text-gray-900">
         Already have an account?

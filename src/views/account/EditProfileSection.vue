@@ -5,26 +5,26 @@
     @showModal="showModal = false"
     @croppedImageData="setCroppedImageData"
   />
-  <div class="mt-20 mb-20">
-    <div class="container max-w-4xl mx-auto mt-10">
-      <div class="text-gray-900 font-bold text-xl">Add Song</div>
+  <div class="mt-28 mb-10">
+    <div class="container max-w-4xl mx-auto px-2">
+      <div class="text-gray-900 font-bold text-xl">Edite Profile</div>
       <div class="bg-green-500 w-full h-1"></div>
     </div>
-    <div class="max-w-4xl mx-auto mt-10">
+    <div class="max-w-4xl mx-auto mt-5">
       <div class="flex flex-wrap mt-4 mb-6">
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/2 px-2">
           <TextInput
             label="First Name"
-            placeHolder="Walid"
+            placeHolder="your first name"
             v-model:input="firstName"
             inputType="text"
             :error="errors.first_name ? errors.first_name[0] : ''"
           />
         </div>
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/2 px-2">
           <TextInput
             label="Last Name"
-            placeHolder="EL ouardi"
+            placeHolder="your lastname"
             v-model:input="lastName"
             inputType="text"
             :error="errors.last_name ? errors.last_name[0] : ''"
@@ -33,10 +33,10 @@
       </div>
 
       <div class="flex flex-wrap mt-4 mb-6">
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/2 px-2">
           <TextInput
             label="Location"
-            placeHolder="Morocco, Agadir"
+            placeHolder="your location"
             v-model:input="location"
             inputType="text"
             :error="errors.location ? errors.location[0] : ''"
@@ -45,7 +45,7 @@
       </div>
 
       <div class="flex flex-wrap mt-4 mb-6">
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/2 px-2">
           <CroppedImage
             v-if="croppedImage"
             label="Cropped Image"
@@ -54,13 +54,13 @@
           <CroppedImage v-else label="Cropped Image" :image="image" />
         </div>
       </div>
-      <DisplayCropperBtn
-        label="Profile Image"
-        btnText="Update Profile Image"
-        @showModal="showModal = true"
-      />
+      <div class="px-2">
+        <DisplayCropperBtn
+          label="Profile Image"
+          btnText="Update Profile Image"
+          @showModal="showModal = true"
+        />
 
-      <div class="px-3">
         <TextAreaInput
           label="Description"
           placeHolder="Description"
@@ -68,7 +68,7 @@
           :error="errors.description ? errors.description[0] : ''"
         />
       </div>
-      <div class="px-3 flex justify-end">
+      <div class="px-2 flex justify-end mt-4">
         <SubmitFormBtn btnText="Update Profile" @submitForm="updateUser" />
       </div>
     </div>
