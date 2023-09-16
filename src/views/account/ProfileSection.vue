@@ -16,8 +16,8 @@
         >
           click her to verify it
         </button>
-        <div v-if="processing" >
-          <ProcessingIcone class="bg-red-500"/>
+        <div v-if="processing">
+          <ProcessingIcone class="bg-red-500" />
         </div>
       </div>
     </div>
@@ -38,6 +38,12 @@
             <span class="text-md text-gray-700"> {{ location }} </span>
           </div>
           <div class="w-1/2 flex justify-end items-center text-center">
+            <RouterLinkBtn
+              btnText="Reset Password"
+              url="/profile/send-reset-password"
+              color="green"
+              class="mr-2"
+            />
             <RouterLinkBtn
               btnText="Edit Profile"
               url="/profile/edit-profile"

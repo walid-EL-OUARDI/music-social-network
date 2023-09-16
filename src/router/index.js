@@ -53,6 +53,16 @@ const router = createRouter({
           component: () => import("../views/account/VerifyEmail.vue"),
         },
         {
+          path: "send-reset-password",
+          name: "send-reset-password",
+          component: () => import("../views/account/SendResetPassword.vue"),
+        },
+        {
+          path: "reset-password",
+          name: "reset-password",
+          component: () => import("../views/account/ResetPassword.vue"),
+        },
+        {
           path: "edit-profile",
           name: "edit-profile",
           component: () => import("../views/account/EditProfileSection.vue"),

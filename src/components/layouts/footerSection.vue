@@ -25,7 +25,7 @@
     <div
       class="container mx-auto max-w-4xl h-full flex flex-wrap justify-between items-center text-sm py-6 pl-6 pr-4"
     >
-      <div class="mt-4">&copy;2022 MSN Company. All rights reserved.</div>
+      <div class="mt-4">&copy;2023 MSN Company. All rights reserved.</div>
       <div class="pt-4 md:p-0 text-left text-sm">
         <div class="no-underline hover:underline sm:ml-8 mb-2">Privacy Policy</div>
         <div class="no-underline hover:underline sm:ml-8 mb-2">
