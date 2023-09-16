@@ -3,67 +3,62 @@
   <div class="flex justify-center mt-20 items-center min-h-screen w-full">
     <div class="w-[90%] sm:w-[60%] md:w-[50%] lg:w-[35%] my-4">
       <div class="bg-gray-900 rounded-md px-8 pt-8 pb-4 mb-2">
-          <h1 class="text-gray-100 font-semibold text-2xl">
-            Let's get rocking
-          </h1>
-          <div class="mb-4">
-            <TextInput
-              label="FirstName"
-              inputType="text"
-              placeHolder="Your firstName"
-              :error="errors.first_name ? errors.first_name[0] : ''"
-              :labelColor="false"
-              v-model:input="firstName"
-            />
-            <TextInput
-              label="LasttName"
-              inputType="text"
-              placeHolder="Your lasttName"
-              :error="errors.last_name ? errors.last_name[0] : ''"
-              :labelColor="false"
-              v-model:input="lastName"
-            />
-            <TextInput
-              label="email"
-              inputType="email"
-              placeHolder="Your email"
-              :error="errors.email ? errors.email[0] : ''"
-              :labelColor="false"
-              v-model:input="email"
-            />
-            <TextInput
-              label="password"
-              inputType="password"
-              placeHolder="Your password"
-              :error="errors.password ? errors.password[0] : ''"
-              :labelColor="false"
-              v-model:input="password"
-            />
-            <TextInput
-              label="comfirm Password"
-              inputType="password"
-              placeHolder="confirm your password"
-              :error="
-                errors.confirmed_password ? errors.confirmed_password[0] : ''
-              "
-              :labelColor="false"
-              v-model:input="comfirmedPassword"
-            />
-            <button
-              v-if="!processing"
-              class="block w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide mt-4"
-              type="submit"
-              @click="register"
-            >
-              Register
-            </button>
-            <div
-              v-if="processing"
-              class="mt-4 flex justify-center w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide"
-            >
-              <ProcessingIcone />
-            </div>
+        <h1 class="text-gray-100 font-semibold text-2xl">Let's get rocking</h1>
+        <div class="mb-4">
+          <TextInput
+            label="FirstName"
+            inputType="text"
+            placeHolder="Your firstName"
+            :error="errors.first_name ? errors.first_name[0] : ''"
+            :labelColor="false"
+            v-model:input="firstName"
+          />
+          <TextInput
+            label="LasttName"
+            inputType="text"
+            placeHolder="Your lasttName"
+            :error="errors.last_name ? errors.last_name[0] : ''"
+            :labelColor="false"
+            v-model:input="lastName"
+          />
+          <TextInput
+            label="email"
+            inputType="email"
+            placeHolder="Your email"
+            :error="errors.email ? errors.email[0] : ''"
+            :labelColor="false"
+            v-model:input="email"
+          />
+          <TextInput
+            label="password"
+            inputType="password"
+            placeHolder="Your password"
+            :error="errors.password ? errors.password[0] : ''"
+            :labelColor="false"
+            v-model:input="password"
+          />
+          <TextInput
+            label="comfirm Password"
+            inputType="password"
+            placeHolder="confirm your password"
+            :error="
+              errors.confirmed_password ? errors.confirmed_password[0] : ''
+            "
+            :labelColor="false"
+            v-model:input="comfirmedPassword"
+          />
+          <button
+            v-if="!processing"
+            class="block w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide mt-4"
+            type="submit"
+            @click="register"
+          >
+            Register
+          </button>
+          <div v-if="processing" class="mt-4 bg-green-600">
+            <ProcessingIcone />
           </div>
+        </div>
       </div>
       <p class="text-center text-xl text-gray-900">
         Already have an account?
@@ -119,7 +114,7 @@ const register = async () => {
         axios.defaults.headers.common["Authorization"] =
           "Bearer " + res.data.token;
         userStore.setUserDetails(res);
-        // await profileStore.fetchProfileById(userStore.id);
+        await userStore.fetchUser();
         await songStore.fetchSong(userStore.id);
         await postStore.fetchPosts(userStore.id);
         await videoStore.fetchvideo(userStore.id);
@@ -127,8 +122,10 @@ const register = async () => {
         router.push("/profile");
       });
   } catch (err) {
-    console.log("mochkila", err);
-    errors.value = err.response.data.errors;
+    if (err.response.data.errors) {
+      errors.value = err.response.data.errors;
+    }
+    console.log(err);
     processing.value = false;
   }
 };

@@ -8,6 +8,7 @@ export const useUserStore = defineStore("user", {
     firstName: null,
     lastName: null,
     email: null,
+    email_verified: null,
     location: null,
     image: null,
     description: null,
@@ -20,6 +21,7 @@ export const useUserStore = defineStore("user", {
       this.$state.firstName = res.data.user.first_name;
       this.$state.lastName = res.data.user.last_name;
       this.$state.email = res.data.user.email;
+      this.$state.email_verified = res.data.user.email_verified;
       this.$state.location = res.data.user.location;
       this.$state.description = res.data.user.description;
       if (res.data.user.image) {
@@ -42,6 +44,7 @@ export const useUserStore = defineStore("user", {
       this.$state.firstName = res.data.user.first_name;
       this.$state.lastName = res.data.user.last_name;
       this.$state.email = res.data.user.email;
+      this.$state.email_verified = res.data.user.email_verified;
       this.$state.location = res.data.user.location;
       this.$state.description = res.data.user.description;
       if (res.data.user.image) {
@@ -61,6 +64,7 @@ export const useUserStore = defineStore("user", {
       this.$state.firstName = null;
       this.$state.lastName = null;
       this.$state.email = null;
+      this.$state.email_verified = null;
       this.$state.location = null;
       this.$state.image = null;
       this.$state.description = null;

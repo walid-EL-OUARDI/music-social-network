@@ -33,10 +33,7 @@
           >
             Login
           </button>
-          <div
-            v-if="processing"
-            class="flex justify-center w-full bg-green-600 text-white rounded-sm py-3 text-xl hover:bg-green-500 tracking-wide"
-          >
+          <div v-if="processing" class="bg-green-600">
             <ProcessingIcone />
           </div>
         </form>

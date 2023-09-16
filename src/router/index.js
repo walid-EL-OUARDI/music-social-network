@@ -40,6 +40,19 @@ const router = createRouter({
           component: () => import("../views/account/ProfileSection.vue"),
         },
         {
+          path: "Send-verify-email",
+          name: "Send-verify-email",
+          beforeEnter: (to, from, next) => {
+            useUserStore().email_verified == 0 ? next() : next("/profile");
+          },
+          component: () => import("../views/account/SendVerifyEmail.vue"),
+        },
+        {
+          path: "verify-email/:id/:hash",
+          name: "verify-email",
+          component: () => import("../views/account/VerifyEmail.vue"),
+        },
+        {
           path: "edit-profile",
           name: "edit-profile",
           component: () => import("../views/account/EditProfileSection.vue"),
@@ -86,6 +99,11 @@ const router = createRouter({
         },
       ],
     },
+    // {
+    //   path: "/email/verify",
+    //   name: "verify-email",
+    //   component: () => import("../views/account/VerifyEmailView.vue"),
+    // },
   ],
 });
 
