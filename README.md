@@ -17,7 +17,7 @@ Pour que ce frontend fonctionne, vous aurez besoin de la partie backend/api -> h
 Clone the repository
 
 ```sh
-https://github.com/John-Weeks-Dev/music-social-network.git
+https://github.com/walid-EL-OUARDI/music-social-network.git
 ```
 
 Run these commands
