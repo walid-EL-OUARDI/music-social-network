@@ -67,6 +67,7 @@ import axios from "axios";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { computed } from "vue";
+import Swal from "@/sweetalert2.js";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import ProfileInfoSection from "@/components/partials/Profile/ProfileInfoSection.vue";
 import ProfileAboutSection from "@/components/partials/Profile/ProfileAboutSection.vue";
@@ -92,6 +93,11 @@ const sendVerificationEmail = async () => {
     router.push("/profile/send-verify-email");
   } catch (err) {
     console.log(err);
+    processing.value = false;
+    Swal.fire({
+      title: "Somthing went wrong !!",
+      icon: "warning",
+    });
   }
 };
 </script>

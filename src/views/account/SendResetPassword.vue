@@ -39,6 +39,7 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import Swal from "@/sweetalert2.js";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import TextInput from "@/components/global/TextInput.vue";
 import ProcessingIcone from "@/components/global/ProcessingIcone.vue";
@@ -51,16 +52,30 @@ const sendPasswordResetLink = async () => {
   error.value = [];
   try {
     processing.value = true;
-    let res = await axios.post("send-reset-Password-email", {
-      email: email.value,
-    });
+    let res = await axios
+      .post("send-reset-Password-email", {
+        email: email.value,
+      })
+      .then(() => {
+        Swal.fire({
+          title: "Please check your Gmail inbox.",
+          text: "We've sent you an email containing a Reset Password link.",
+          icon: "success",
+        });
+      });
     processing.value = false;
     console.log(res);
   } catch (err) {
     processing.value = false;
     console.log(err);
+
     if (err.response.data.errors) {
       error.value = err.response.data.errors;
+    } else {
+      Swal.fire({
+        title: "Somthing went wrong !!",
+        icon: "warning",
+      });
     }
   }
 };

@@ -30,6 +30,7 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import Swal from "@/sweetalert2.js";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import ProcessingIcone from "@/components/global/ProcessingIcone.vue";
 import FooterSection from "@/components/layouts/FooterSection.vue";
@@ -44,8 +45,17 @@ const sendVerificationEmail = async () => {
     processing.value = true;
     await axios.get("email/verify/" + userStore.email);
     processing.value = false;
+    Swal.fire({
+      title: "Check your Gmail inbox",
+      icon: "success",
+    });
   } catch (err) {
+    processing.value = false;
     console.log(err);
+    Swal.fire({
+      title: "Somthing went wrong !!",
+      icon: "warning",
+    });
   }
 };
 </script>

@@ -49,11 +49,14 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import Swal from "@/sweetalert2.js";
 import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import TextInput from "@/components/global/TextInput.vue";
 import ProcessingIcone from "@/components/global/ProcessingIcone.vue";
 import FooterSection from "@/components/layouts/FooterSection.vue";
 import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const route = useRoute();
 let password = ref(null);
 let comfirmedPassword = ref(null);
@@ -65,11 +68,19 @@ const resetPassword = async () => {
   error.value = [];
   try {
     processing.value = true;
-    let res = await axios.post("reset-Password", {
-      token: route.query.token,
-      password: password.value,
-      password_confirmation: comfirmedPassword.value,
-    });
+    let res = await axios
+      .post("reset-Password", {
+        token: route.query.token,
+        password: password.value,
+        password_confirmation: comfirmedPassword.value,
+      })
+      .then(() => {
+        Swal.fire({
+          title: "Your Password Has Been Updated",
+          icon: "success",
+        });
+        router.push("/profile");
+      });
     processing.value = false;
     console.log(res);
   } catch (err) {
