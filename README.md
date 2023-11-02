@@ -1,29 +1,35 @@
 # music-social-network
 
-This template should help get you started developing with Vue 3 in Vite.
+Explorez la magie de la musique à travers notre petit réseau social musical. Partagez vos morceaux préférés et vidéos musicales avec une communauté passionnée d'utilisateurs 
 
-## Recommended IDE Setup
+## Technologies Utilisées
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Frontend : Vue.js
+- Backend : Laravel
+- Base de données : MySQL
 
-## Customize configuration
+# Setup
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Note
 
-## Project Setup
+Pour que ce frontend fonctionne, vous aurez besoin de la partie backend/api -> https://github.com/walid-EL-OUARDI/music-social-network-api 
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
+Clone the repository
 
 ```sh
-npm run dev
+https://github.com/walid-EL-OUARDI/music-social-network.git
 ```
 
-### Compile and Minify for Production
+Run these commands
 
 ```sh
-npm run build
+cd music-social-network
+
+npm i
+
+npm run serve
 ```
+
+
+
+
