@@ -30,6 +30,22 @@ npm i
 npm run serve
 ```
 
+# Application images/pages
+
+## Profile Section
+
+![Screenshot 1](/project_screenshots/Screenshot%201.jpg)
+![Screenshot 2](/project_screenshots/Screenshot%202.jpg)
+![Screenshot 3](/project_screenshots/Screenshot%203.png)
+![Screenshot 4](/project_screenshots/Screenshot%204.png)
+
+## Post Section
+
+![Screenshot 5](/project_screenshots/Screenshot%205.png)
+![Screenshot 6](/project_screenshots/Screenshot%206.png)
+![Screenshot 7](/project_screenshots/Screenshot%207.png)
+![Screenshot 8](/project_screenshots/Screenshot%208.png)
+
 
 
 
