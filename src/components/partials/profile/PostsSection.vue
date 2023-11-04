@@ -15,13 +15,17 @@
         </div>
         <div class="flex flex-wrap mb-4">
           <div
-            v-for="(post, index) in posts"
+            v-for="(post, index) in postStore.posts"
             :key="index"
             class="my-1 px-1 w-full md:w-1/2 lg:w-1/2"
           >
             <div class="rounded-lg border">
               <a href="#">
-                <img class="rounded-t-lg w-full h-[18rem]" :src="post.image" alt="" />
+                <img
+                  class="rounded-t-lg w-full h-[18rem]"
+                  :src="post.image"
+                  alt=""
+                />
               </a>
               <div class="p-2 md:p-4">
                 <div class="text-lg">
@@ -65,7 +69,7 @@ import RouterLinkBtn from "../../global/RouterLinkBtn.vue";
 import { usePostStore } from "@/stores/usePostStore.js";
 import Swal from "@/sweetalert2.js";
 const postStore = usePostStore();
-let posts = postStore.posts;
+// let posts = postStore.posts;
 
 const deletePost = async (post) => {
   Swal.fire({
@@ -80,8 +84,8 @@ const deletePost = async (post) => {
     if (result.isConfirmed) {
       try {
         await axios.delete("post/" + post.id);
+        Swal.fire("Deleted!", "Your post has been deleted.", "success");
         postStore.fetchPosts(post.user_id);
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
       } catch (err) {
         console.log(err);
       }

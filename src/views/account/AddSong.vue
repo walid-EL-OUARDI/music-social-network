@@ -1,6 +1,6 @@
 <template>
   <TopNavigation />
-  <div class="container max-w-4xl mx-auto mt-28  px-2 flex-grow">
+  <div class="container max-w-4xl mx-auto mt-28 px-2 flex-grow">
     <div class="text-gray-900 font-bold text-xl">Add song</div>
     <div class="bg-green-500 w-full h-1"></div>
     <TextInput
@@ -43,6 +43,8 @@ import TopNavigation from "@/components/layouts/TopNavigation.vue";
 import FooterSection from "@/components/layouts/FooterSection.vue";
 import { useUserStore } from "@/stores/useUserStore.js";
 import { useSongStore } from "@/stores/useSongStore.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const userStore = useUserStore();
 const songStore = useSongStore();
 let songTitle = ref(null);
@@ -71,9 +73,15 @@ const storeSong = async () => {
     let res = await axios.post("song", songData);
     console.log(res);
     songStore.fetchSong(userStore.id);
+    Sawl.fire(
+      "New song added!",
+      'You added a song with the name "' + songTitle.value + '"',
+      "success"
+    );
+    router.push("/profile");
   } catch (err) {
+    console.log(err);
     errors.value = err.response.data.errors;
-    // console.log(errors.value.title[0]);
   }
 };
 </script>

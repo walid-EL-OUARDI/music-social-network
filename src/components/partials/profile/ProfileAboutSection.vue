@@ -4,12 +4,12 @@
       <b>About me</b>
     </p>
     <p class="text-md md:text-lg text-gray-600 leading-normal">
-      {{ userDescription }}
+      {{ userStore.description }}
     </p>
   </div>
 </template>
 <script setup>
 import { useUserStore } from "@/stores/useUserStore.js";
 const userStore = useUserStore();
-const userDescription = userStore.description;
+// const userDescription = userStore.description;
 </script>

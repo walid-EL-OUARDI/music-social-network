@@ -1,6 +1,6 @@
 <template>
   <TopNavigation />
-  <div class="container max-w-4xl mx-auto mt-28  flex-grow">
+  <div class="container max-w-4xl mx-auto mt-28 flex-grow">
     <div class="px-2">
       <div class="text-gray-900 font-bold text-xl">Delete Song</div>
       <div class="bg-green-500 w-full h-1"></div>
@@ -53,8 +53,8 @@ const deleteSong = async (song) => {
     if (result.isConfirmed) {
       try {
         await axios.delete("song/" + song.id);
+        Swal.fire("Deleted!", "Your song has been deleted.", "success");
         songStore.fetchSong(song.user_id);
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
         router.push("/profile");
       } catch (err) {
         console.log(err);

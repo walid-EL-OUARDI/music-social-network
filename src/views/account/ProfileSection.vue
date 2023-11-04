@@ -8,7 +8,7 @@
       <div
         class="rounded-md p-2 flex justify-between items-center bg-red-500 text-white w-full"
       >
-        <p class="text-xl capitalize">your email it is not verified</p>
+        <p class="text-xl capitalize">Your account it is not verified</p>
         <button
           v-if="!processing"
           class="bg-slate-600 hover:bg-gray-500 py-2 px-4 rounded-md capitalize"
@@ -25,7 +25,7 @@
       <div class="md:w-1/3 w-1/2">
         <img
           class="rounded-lg h-auto shadow-lg"
-          :src="image"
+          :src="userStore.image"
           alt="Profile Pic"
         />
       </div>
@@ -35,7 +35,7 @@
             <h1 class="text-2xl md:text-4xl test-left text-gray-900">
               {{ fullName }}
             </h1>
-            <span class="text-md text-gray-700"> {{ location }} </span>
+            <span class="text-md text-gray-700"> {{ userStore.location }} </span>
           </div>
           <div class="w-1/2 flex justify-end items-center text-center">
             <RouterLinkBtn
@@ -81,8 +81,8 @@ import { useUserStore } from "@/stores/useUserStore.js";
 const userStore = useUserStore();
 const router = useRouter();
 const fullName = computed(() => userStore.firstName + " " + userStore.lastName);
-const location = userStore.location;
-const image = userStore.image;
+// const location = userStore.location;
+// const image = userStore.image;
 const processing = ref(false);
 
 const sendVerificationEmail = async () => {

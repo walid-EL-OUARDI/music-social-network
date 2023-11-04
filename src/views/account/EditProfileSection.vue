@@ -88,6 +88,9 @@ import CroppedImage from "@/components/global/CroppedImage.vue";
 import SubmitFormBtn from "@/components/global/SubmitFormBtn.vue";
 import TextAreaInput from "@/components/global/TextAreaInput.vue";
 import { useUserStore } from "@/stores/useUserStore";
+import { useRouter } from "vue-router";
+import Sawl from "@/sweetalert2.js";
+const router = useRouter();
 const userStore = useUserStore();
 let showModal = ref(false);
 let firstName = ref(null);
@@ -129,6 +132,8 @@ const updateUser = async () => {
   try {
     await axios.post("user/" + userStore.id + "?_method=PUT", data);
     userStore.fetchUser();
+    Sawl.fire("Updated!", "Your profile info are Updated.", "success");
+    router.push("/profile");
   } catch (err) {
     console.log("mochkila", err);
     errors.value = err.response.data.errors;

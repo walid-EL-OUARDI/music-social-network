@@ -1,7 +1,7 @@
 <template>
   <TopNavigation />
   <div class="mt-28 mb-20 flex-grow">
-    <div class="container max-w-4xl mx-auto px-2 ">
+    <div class="container max-w-4xl mx-auto px-2">
       <div class="text-gray-900 font-bold text-xl">Edite Post</div>
       <div class="bg-green-500 w-full h-1"></div>
     </div>
@@ -69,8 +69,10 @@ import TextAreaInput from "@/components/global/TextAreaInput.vue";
 import { useUserStore } from "@/stores/useUserStore.js";
 import { usePostStore } from "@/stores/usePostStore.js";
 import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import Sawl from "@/sweetalert2.js";
 const route = useRoute();
+const router = useRouter();
 const userStore = useUserStore();
 const postStore = usePostStore();
 
@@ -105,7 +107,8 @@ const updatePost = async (postId) => {
   try {
     await axios.post("post/" + postId + "?_method=PUT", postData);
     postStore.fetchPosts(userStore.id);
-    // router.push("/profile");
+    Sawl.fire("Updated!", "Your post has been Updated.", "success");
+    router.push("/profile");
   } catch (err) {
     console.log("mochkila", err);
     errors.value = err.response.data.errors;

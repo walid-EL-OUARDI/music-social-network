@@ -1,6 +1,6 @@
 <template>
   <TopNavigation />
-  <div class="mt-28  mb-10 flex-grow">
+  <div class="mt-28 mb-10 flex-grow">
     <div class="container max-w-4xl mx-auto px-2">
       <div class="text-gray-900 font-bold text-xl">Create Post</div>
       <div class="bg-green-500 w-full h-1"></div>
@@ -99,11 +99,14 @@ const createPost = async () => {
 
   try {
     await axios.post("post/", postData);
+    Sawl.fire("Created!", "Your post has been created.", "success");
     postStore.fetchPosts(userStore.id);
     router.push("/profile");
   } catch (err) {
     console.log("mochkila", err);
-    errors.value = err.response.data.errors;
+    if (err.response.data.errors) {
+      errors.value = err.response.data.errors;
+    }
   }
 };
 </script>

@@ -22,7 +22,7 @@
         <div class="flex flex-wrap mb-4">
           <div
             class="my-1 px-1 w-full md:w-1/2"
-            v-for="video in videos"
+            v-for="video in videoStore.videos"
             :key="video"
           >
             <div class="text-xl text-gray-900">{{ video.title }}</div>
@@ -38,12 +38,6 @@
 import RouterLinkBtn from "../../global/RouterLinkBtn.vue";
 import { useVideoStore } from "@/stores/useVideoStore.js";
 import { useUserStore } from "@/stores/useUserStore.js";
-import { onMounted } from "vue";
 const videoStore = useVideoStore();
 const userStore = useUserStore();
-const videos = videoStore.videos;
-onMounted(() => {
-  videoStore.fetchvideo(userStore.id);
-  console.log(videoStore.videos);
-});
 </script>

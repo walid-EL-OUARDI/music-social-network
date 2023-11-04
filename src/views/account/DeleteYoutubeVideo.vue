@@ -3,7 +3,11 @@
   <div class="px-2 container max-w-4xl mx-auto mt-28 flex-grow mb-4">
     <div class="text-gray-900 font-bold text-xl">Delete Youtube Video</div>
     <div class="bg-green-500 w-full h-1"></div>
-    <div class="flex items-center justify-between" v-for="(video, index) in videos" :key="index">
+    <div
+      class="flex items-center justify-between"
+      v-for="(video, index) in videoStore.videos"
+      :key="index"
+    >
       <div>
         <div class="w-full mr-auto mt-2 text-lg p-1 text-gray-900">
           {{ ++index }}.{{ video.title }}
@@ -33,7 +37,7 @@ import { onMounted } from "vue";
 const router = useRouter();
 const videoStore = useVideoStore();
 const userStore = useUserStore();
-const videos = videoStore.videos;
+// const videos = videoStore.videos;
 const deleteVideo = async (video) => {
   Swal.fire({
     title: "Are you sure you want to delete this?",
@@ -48,6 +52,7 @@ const deleteVideo = async (video) => {
       try {
         await axios.delete("video/" + video.id);
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        videoStore.fetchvideo(userStore.id);
         router.push("/profile");
       } catch (err) {
         console.log(err);
