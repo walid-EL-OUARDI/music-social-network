@@ -27,7 +27,7 @@ cd music-social-network
 
 npm i
 
-npm run serve
+npm run dev
 ```
 
 # Application images/pages
