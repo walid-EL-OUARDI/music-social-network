@@ -21,21 +21,23 @@
         </div>
       </div>
     </div>
-    <div class="container max-w-4xl mx-auto flex">
-      <div class="md:w-1/3 w-1/2">
+    <div class="container max-w-4xl mx-auto sm:flex">
+      <div class="md:w-1/3 w-full my-2">
         <img
-          class="rounded-lg h-auto shadow-lg"
+          class="rounded-lg h-[16rem] md:h-auto shadow-lg w-full"
           :src="userStore.image"
           alt="Profile Pic"
         />
       </div>
-      <div class="w-full pl-4">
-        <div class="flex">
+      <div class="w-full sm:pl-4 ">
+        <div class="flex ">
           <div class="w-1/2">
             <h1 class="text-2xl md:text-4xl test-left text-gray-900">
               {{ fullName }}
             </h1>
-            <span class="text-md text-gray-700"> {{ userStore.location }} </span>
+            <span class="text-md text-gray-700">
+              {{ userStore.location }}
+            </span>
           </div>
           <div class="w-1/2 flex justify-end items-center text-center">
             <RouterLinkBtn
